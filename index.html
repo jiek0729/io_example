@@ -1,1 +1,74 @@
-Hello World
+<!doctype html>
+<html  ng-app="ratingApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Javascript + Angular</title>
+	
+	<script src="http://code.angularjs.org/1.3.9/angular.js"></script>
+	<script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript" src="ratingApp.js"></script>
+	<script type="text/javascript" src="ml4data.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="ratingApp.css">
+</head>
+<body>
+<div id = "header">
+	<h1>Movie Lens Intro Task</h1>
+	<ul>
+		<li><a ui-sref="home">Home</a></li>
+		<li><a ui-sref="users">Ratings By Users</a></li>
+	</ul>
+</div>
+
+<div ui-view></div>
+
+<script type="text/ng-template" id="templates/home.html">
+<div>
+    <h2>Task: Javascript + Angular Framework</h2>
+	<p>Your task is to build a mini angular web app with several pages about user's movie ratings.</p>
+	<p>Your code should go in the javascript folder.</p>
+	<p>The file ml4data.js contains your data.</p>
+</div>
+</script>
+
+<script type="text/ng-template" id="templates/users.html">
+<div id = "nav">
+	<h2>Ratings By User</h2>
+	<p>
+		Order By:
+		<select ng-model="order" ng-change="sort()">
+			<option ng-repeat="o in sortBy">{{o}}</option>
+		</select>
+		
+	</p>
+	<p>
+		Filter: <input type="string" ng-model="userIdFilter" ng-change="filterUser()">
+	</p>
+	<div id = "userRatings">
+		<table border="1" width="270px">
+			<tr>
+				<td>User ID</td>
+				<td>Total Ratings</td>
+			</tr>
+			<tr ng-repeat="userRating in displayRatings">
+				<td><a ng-href="#/users/{{userRating.userId}}/stats">{{userRating.userId}}</a></td>
+				<td>{{nRating(userRating)}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div ui-view></div>
+</script>
+
+<script type="text/ng-template" id="templates/users.user.stats.html">
+<div id = "section">
+    <h2>User Stats</h2>
+	<h3>User: {{selectedUserId}}</h3>
+	<p>Ratings: {{userStats.nRatings}}</p>
+	<p>Average Rating: {{userStats.avgRating}}</p>
+	<p>Median Rating: {{userStats.median}}</p>
+	<p>Standard Deviation: {{userStats.stdDeviation}}</p>
+</div>
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+table {
+	text-align: right;
+}
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    width:300px;
+    float:left;
+    padding:5px;
+}
+#userRatings {
+	height: 600px;
+	float:center;
+	padding:5px;
+	overflow:scroll;
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px; 
+}
